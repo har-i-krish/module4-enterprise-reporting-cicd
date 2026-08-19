@@ -68,27 +68,29 @@ pipeline {
             }
         }
 
-        stage('Publish Reports') {
-            steps {
-                echo 'Publishing Playwright HTML report and Allure report...'
+       stage('Publish Reports') {
+    steps {
+        echo 'Publishing Playwright HTML report and Allure HTML report...'
 
-                publishHTML(target: [
-                    reportName: 'Playwright HTML Report',
-                    reportDir: 'playwright-report',
-                    reportFiles: 'index.html',
-                    keepAll: true,
-                    alwaysLinkToLastBuild: true,
-                    allowMissing: false
-                ])
+        publishHTML(target: [
+            reportName: 'Playwright HTML Report',
+            reportDir: 'playwright-report',
+            reportFiles: 'index.html',
+            keepAll: true,
+            alwaysLinkToLastBuild: true,
+            allowMissing: false
+        ])
 
-                allure(
-                    includeProperties: false,
-                    jdk: '',
-                    results: [[path: 'allure-results']]
-                )
-            }
-        }
-
+        publishHTML(target: [
+            reportName: 'Allure HTML Report',
+            reportDir: 'allure-report',
+            reportFiles: 'index.html',
+            keepAll: true,
+            alwaysLinkToLastBuild: true,
+            allowMissing: false
+        ])
+    }
+}
         stage('Archive Artifacts') {
             steps {
                 echo 'Archiving test reports and diagnostic artifacts...'
