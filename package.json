@@ -1,0 +1,23 @@
+{
+  "name": "module4-enterprise-reporting-cicd",
+  "version": "1.0.0",
+  "description": "Module 4 End Assignment - Enterprise Reporting, Diagnostics & CI/CD (Playwright + Allure + Jenkins)",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:sauce-purchase": "playwright test saucedemo-purchase.spec.js",
+    "test:sauce-failure": "playwright test saucedemo-cart-failure.spec.js",
+    "test:orangehrm": "playwright test orangehrm-search.spec.js",
+    "report:show": "playwright show-report",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "trace:show": "playwright show-trace",
+    "clean": "rimraf test-results playwright-report allure-results allure-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.0",
+    "allure-commandline": "^2.30.0",
+    "allure-playwright": "^2.15.1",
+    "rimraf": "^6.0.1"
+  }
+}
